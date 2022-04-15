@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ms-personal-passive-saving-account
+  cloud:
+    config:
+      label: main
+      uri: http://localhost:8081
+      username: root
+      password: 1234
