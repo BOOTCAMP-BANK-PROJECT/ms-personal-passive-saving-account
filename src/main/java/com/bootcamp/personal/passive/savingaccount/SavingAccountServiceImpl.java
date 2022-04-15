@@ -31,8 +31,8 @@ public class SavingAccountServiceImpl implements ISavingAccountService {
     @Override
     public Mono<SavingAccount> save(CreateSavingAccountDto o) {
 
-        if(Util.isValidCurrency(o.getIsoCurrencyCode())){
-            new Exception(o.getIsoCurrencyCode() + " is an invalid currency code.");
+        if(!Util.isValidCurrency(o.getIsoCurrencyCode())){
+            throw new Error(o.getIsoCurrencyCode() + " is an invalid currency code.");
         }
 
         return repository.save(Util.mapCreate(o));

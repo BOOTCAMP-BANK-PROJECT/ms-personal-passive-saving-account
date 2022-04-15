@@ -7,3 +7,13 @@ spring:
       uri: http://localhost:8081
       username: root
       password: 1234
+
+# Swagger openapi.docs custom path
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /v3/api-docs/ui
+    enabled: true
+  show-actuator: true

@@ -9,8 +9,8 @@ import java.util.Date;
 @Data
 public class CreateSavingAccountDto {
 
-    @Id
-    private String id;
+    /*@Id
+    private String id;*/
     private String description;
     private String abbreviation;
     private String isoCurrencyCode;

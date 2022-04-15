@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/saving_account")
+@RequestMapping("saving_account")
 @Tag(name = "Personal Passive Product Saving Account Type", description = "Manage Personal Passive Product saving accounts type")
 @RequiredArgsConstructor
 public class SavingAccountController {
