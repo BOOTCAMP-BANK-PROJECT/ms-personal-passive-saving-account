@@ -17,6 +17,8 @@ public class ControllerAdvice {
     public ResponseEntity<ErrorDto> runtimeExceptionHandler(RuntimeException ex) {
         ErrorDto err = ErrorDto.builder().code("RUNTIME").message(ex.getMessage()).build();
 
+        Util.log(getClass(), Level.SEVERE, " [{0}] {1}", new Object[] { err.getCode(), err.getMessage() });
+
         return new ResponseEntity<>(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -30,6 +32,8 @@ public class ControllerAdvice {
                 .context(ex.getContext())
                 .build();
 
+        Util.log(ex.getContext_class(), Level.SEVERE, " [{0}] {1} >> {2}", new Object[] { err.getCode(), ex.getMessage(), ex.getDetail() });
+
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
@@ -42,6 +46,8 @@ public class ControllerAdvice {
                 .context_class(ex.getContext_class())
                 .context(ex.getContext())
                 .build();
+
+        Util.log(ex.getContext_class(), Level.SEVERE, " [{0}] {1} >> {2}", new Object[] { err.getCode(), ex.getMessage(), ex.getDetail() });
 
         return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
     }
