@@ -4,12 +4,11 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.core.env.Environment;
 
 import java.util.logging.Logger;
@@ -21,6 +20,7 @@ import java.util.logging.Logger;
 		contact = @Contact(name = "Samuel Luis", email = "samuel@company.com", url = "https://www.linkedin.com/in/samuel14luis/"),
 		license = @License(name = "MIT License", url = "https://choosealicense.com/licenses/mit/")
 ))
+@EnableEurekaClient
 @SpringBootApplication
 public class SavingAccountApplication implements CommandLineRunner {
 
@@ -36,8 +36,9 @@ public class SavingAccountApplication implements CommandLineRunner {
 		logger.info("Java version: " + env.getProperty("java.version"));
 		logger.info("Application name: " + env.getProperty("spring.application.name"));
 		logger.info("Properties file upload status: " + env.getProperty("my-own-app.properties.status"));
-		logger.info("Swagger: http://localhost:" + env.getProperty("server.port") + env.getProperty("springdoc.swagger-ui.path"));
+		logger.info("Swagger: http://localhost:" + env.getProperty("server.port") +"/" + env.getProperty("springdoc.swagger-ui.path"));
 	}
+
 
 	public static void main(String[] args) {
 

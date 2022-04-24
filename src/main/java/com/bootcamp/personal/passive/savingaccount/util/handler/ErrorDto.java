@@ -1,4 +1,4 @@
-package com.bootcamp.personal.passive.savingaccount.handler;
+package com.bootcamp.personal.passive.savingaccount.util.handler;
 
 import lombok.Builder;
 import lombok.Data;

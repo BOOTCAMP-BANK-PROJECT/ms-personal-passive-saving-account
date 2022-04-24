@@ -3,8 +3,7 @@ package com.bootcamp.personal.passive.savingaccount;
 import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
-import com.bootcamp.personal.passive.savingaccount.handler.exceptions.BadRequestException;
-import com.bootcamp.personal.passive.savingaccount.handler.exceptions.NotFoundException;
+import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
 import com.bootcamp.personal.passive.savingaccount.repository.SavingAccountRepository;
 import com.bootcamp.personal.passive.savingaccount.util.Util;
 
@@ -16,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public class SavingAccountServiceImpl implements ISavingAccountService {
+public class SavingAccountServiceImpl implements SavingAccountService {
 
     public final SavingAccountRepository repository;
 

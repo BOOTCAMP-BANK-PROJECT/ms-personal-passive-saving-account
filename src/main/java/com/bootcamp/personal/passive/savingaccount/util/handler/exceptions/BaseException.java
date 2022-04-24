@@ -1,4 +1,4 @@
-package com.bootcamp.personal.passive.savingaccount.handler.exceptions;
+package com.bootcamp.personal.passive.savingaccount.util.handler.exceptions;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

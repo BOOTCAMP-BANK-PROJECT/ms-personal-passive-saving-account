@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-public interface ISavingAccountService {
+public interface SavingAccountService {
 
     public Flux<SavingAccount> getAll();
 

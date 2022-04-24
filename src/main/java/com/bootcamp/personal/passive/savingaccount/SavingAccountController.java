@@ -14,14 +14,15 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @RestController
-@RequestMapping("saving_account")
+@RequestMapping("personal/passive/saving_account")
 @Tag(name = "Personal Passive Product Saving Account Type", description = "Manage Personal Passive Product saving accounts type")
+@CrossOrigin( value = { "*" })
 @RequiredArgsConstructor
 public class SavingAccountController {
 
     public final SavingAccountServiceImpl service;
 
-    @GetMapping
+    @GetMapping//(value = "/fully")
     public Mono<ResponseEntity<Flux<SavingAccount>>> getAll() {
         return Mono.just(
                         ResponseEntity.ok()

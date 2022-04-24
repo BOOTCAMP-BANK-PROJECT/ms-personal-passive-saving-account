@@ -1,7 +1,7 @@
-package com.bootcamp.personal.passive.savingaccount.handler;
+package com.bootcamp.personal.passive.savingaccount.util.handler;
 
-import com.bootcamp.personal.passive.savingaccount.handler.exceptions.BadRequestException;
-import com.bootcamp.personal.passive.savingaccount.handler.exceptions.NotFoundException;
+import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
+import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.NotFoundException;
 import com.bootcamp.personal.passive.savingaccount.util.Util;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
