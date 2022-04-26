@@ -23,7 +23,7 @@ public class GenericController {
         return Mono.just(
                 ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(Flux.just("Hola, Generic Controller FROM PerPas saving-account v1.1. with Cors *"))
+                        .body(Flux.just("Hola, Generic Controller FROM PerPas saving-account v1.3. with Cors *"))
         );
     }
 
