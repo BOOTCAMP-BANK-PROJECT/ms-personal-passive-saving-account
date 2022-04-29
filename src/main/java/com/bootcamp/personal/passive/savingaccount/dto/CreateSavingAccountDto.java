@@ -9,14 +9,10 @@ import java.util.Date;
 @Data
 public class CreateSavingAccountDto {
 
-    /*@Id
-    private String id;*/
     private String description;
     private String abbreviation;
     private String isoCurrencyCode;
     private BigDecimal interesRate;
-    //private short registrationStatus;
-    //private Date insertionDate = new Date();
     private String fk_insertionUser;
     private String insertionTerminal;
 

@@ -1,4 +1,4 @@
-package com.bootcamp.personal.passive.savingaccount;
+package com.bootcamp.personal.passive.savingaccount.service;
 
 import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
@@ -13,7 +13,7 @@ public interface SavingAccountService {
 
     public Mono<SavingAccount> getById(String id);
 
-    public Mono<SavingAccount> save(CreateSavingAccountDto o);
+    public Mono<SavingAccount> save(SavingAccount o);
 
     public Mono<SavingAccount> update(UpdateSavingAccountDto o);
 

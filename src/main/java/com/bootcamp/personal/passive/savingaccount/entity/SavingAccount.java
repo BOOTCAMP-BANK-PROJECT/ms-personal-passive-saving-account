@@ -23,6 +23,8 @@ public class SavingAccount {
     private String isoCurrencyCode;
     private BigDecimal interesRate;
     private short registrationStatus;
+    private Integer transactionsNumber;
+    private Double mainteanceCost;
     private Date insertionDate;
     private String fk_insertionUser;
     private String insertionTerminal;

@@ -1,9 +1,11 @@
-package com.bootcamp.personal.passive.savingaccount;
+package com.bootcamp.personal.passive.savingaccount.service;
 
 import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
 import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
+import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.NotFoundException;
+
 import com.bootcamp.personal.passive.savingaccount.repository.SavingAccountRepository;
 import com.bootcamp.personal.passive.savingaccount.util.Util;
 
@@ -30,19 +32,19 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     }
 
     @Override
-    public Mono<SavingAccount> save(CreateSavingAccountDto o) {
-
-        if(!Util.isValidCurrency(o.getIsoCurrencyCode())){
-            throw new BadRequestException(
-                    "CURRENCY",
-                    "An error occurred while trying to create an item.",
-                    o.getIsoCurrencyCode() + " is an invalid currency code.",
-                    SavingAccountServiceImpl.class,
-                    "save"
-            );
-        }
-
-        return repository.save(Util.mapCreate(o));
+    public Mono<SavingAccount> save(SavingAccount savingAccount) {
+        return repository.findByIdClient(savingAccount.getIdClient())
+                .map(sa -> {
+                    throw new BadRequestException(
+                            "ID",
+                            "Client have one ore more accounts",
+                            sa.getId(),
+                            SavingAccountServiceImpl.class,
+                            "save.onErrorResume"
+                    );
+                })
+                .switchIfEmpty(repository.save(savingAccount))
+                .onErrorResume(e -> Mono.error(e)).cast(SavingAccount.class);
     }
 
     @Override
@@ -50,8 +52,8 @@ public class SavingAccountServiceImpl implements SavingAccountService {
 
         return repository.findById(o.getId())
                 .switchIfEmpty(Mono.error(new Exception("An item with the id " + o.getId() + " was not found. >> switchIfEmpty")))
-                .flatMap( p -> repository.save(Util.mapUpdate(p, o)) )
-                .onErrorResume( e -> Mono.error(new BadRequestException(
+                .flatMap(p -> repository.save(Util.mapUpdate(p, o)))
+                .onErrorResume(e -> Mono.error(new BadRequestException(
                         "ID",
                         "An error occurred while trying to update an item.",
                         e.getMessage(),
@@ -65,8 +67,8 @@ public class SavingAccountServiceImpl implements SavingAccountService {
 
         return repository.findById(id)
                 .switchIfEmpty(Mono.error(new Exception("An item with the id " + id + " was not found. >> switchIfEmpty")))
-                .flatMap( p -> repository.save(Util.mapDelete(p, id)) )
-                .onErrorResume( e -> Mono.error(new BadRequestException(
+                .flatMap(p -> repository.save(Util.mapDelete(p, id)))
+                .onErrorResume(e -> Mono.error(new BadRequestException(
                         "ID",
                         "An error occurred while trying to delete an item.",
                         e.getMessage(),

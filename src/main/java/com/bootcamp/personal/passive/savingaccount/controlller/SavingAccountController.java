@@ -1,8 +1,9 @@
-package com.bootcamp.personal.passive.savingaccount;
+package com.bootcamp.personal.passive.savingaccount.controlller;
 
 import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
+import com.bootcamp.personal.passive.savingaccount.service.SavingAccountServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -32,9 +33,9 @@ public class SavingAccountController {
     }
 
     @PostMapping
-    public Mono<ResponseEntity<SavingAccount>> create(@RequestBody CreateSavingAccountDto o) {
+    public Mono<ResponseEntity<SavingAccount>> create(@RequestBody SavingAccount savingAccount) {
 
-        return service.save(o).map( p -> ResponseEntity
+        return service.save(savingAccount).map( p -> ResponseEntity
                 .created(URI.create("/SavingAccount/".concat(p.getId())))
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(p)

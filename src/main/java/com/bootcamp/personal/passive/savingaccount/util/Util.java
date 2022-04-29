@@ -7,13 +7,12 @@ import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Util {
 
-    public static boolean isValidCurrency(String code){
+    public static boolean isValidCurrency(String code) {
         try {
             Currency c = Currency.getInstance(code);
             if (c != null) return true;
@@ -23,31 +22,32 @@ public class Util {
         return false;
     }
 
-    public static SavingAccount mapCreate(CreateSavingAccountDto o) {
+   /* public static SavingAccount mapCreate(CreateSavingAccountDto o) {
 
         SavingAccount p = new SavingAccount(
-                (String) null,
+                null,
                 o.getDescription(),
                 o.getAbbreviation(),
                 o.getIsoCurrencyCode(),
                 new BigDecimal(0),
-                (short) 1,
-                new Date(),
                 o.getFk_insertionUser(),
                 o.getInsertionTerminal()
         );
 
         return p;
-    }
+    }*/
 
     public static SavingAccount mapUpdate(SavingAccount p, UpdateSavingAccountDto o) {
         return new SavingAccount(
                 o.getId(),
+                p.getIdClient(),
                 o.getDescription(),
                 o.getAbbreviation(),
                 p.getIsoCurrencyCode(),
                 o.getInteresRate(),
                 p.getRegistrationStatus(),
+                p.getTransactionsNumber(),
+                p.getMainteanceCost(),
                 p.getInsertionDate(),
                 p.getFk_insertionUser(),
                 p.getInsertionTerminal()
@@ -57,11 +57,14 @@ public class Util {
     public static SavingAccount mapDelete(SavingAccount p, String id) {
         return new SavingAccount(
                 id,
+                p.getIdClient(),
                 p.getDescription(),
                 p.getAbbreviation(),
                 p.getIsoCurrencyCode(),
                 p.getInteresRate(),
                 (short) 0,
+                p.getTransactionsNumber(),
+                p.getMainteanceCost(),
                 p.getInsertionDate(),
                 p.getFk_insertionUser(),
                 p.getInsertionTerminal()
