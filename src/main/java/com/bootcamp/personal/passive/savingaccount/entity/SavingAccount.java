@@ -17,12 +17,13 @@ public class SavingAccount {
 
     @Id
     private String id;
+    private String idClient;
     private String description;
     private String abbreviation;
     private String isoCurrencyCode;
     private BigDecimal interesRate;
     private short registrationStatus;
-    private Date insertionDate = new Date();
+    private Date insertionDate;
     private String fk_insertionUser;
     private String insertionTerminal;
 
