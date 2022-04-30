@@ -1,7 +1,7 @@
 package com.bootcamp.personal.passive.savingaccount.controlller;
 
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
-import com.bootcamp.personal.passive.savingaccount.service.impl.SavingAccountServiceImpl;
+import com.bootcamp.personal.passive.savingaccount.service.SavingAccountService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class SavingAccountController {
 
-    public final SavingAccountServiceImpl service;
+    public final SavingAccountService service;
 
     @GetMapping//(value = "/fully")
     public Mono<ResponseEntity<Flux<SavingAccount>>> getAll() {
