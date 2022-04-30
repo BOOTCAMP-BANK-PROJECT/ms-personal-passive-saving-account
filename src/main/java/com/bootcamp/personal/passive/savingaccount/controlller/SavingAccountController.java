@@ -43,8 +43,8 @@ public class SavingAccountController {
     }
 
     @PutMapping
-    public Mono<ResponseEntity<SavingAccount>> update(@RequestBody UpdateSavingAccountDto o) {
-        return service.update(o)
+    public Mono<ResponseEntity<SavingAccount>> update(@RequestBody SavingAccount savingAccount) {
+        return service.update(savingAccount)
                 .map(p -> ResponseEntity.created(URI.create("/SavingAccount/"
                                 .concat(p.getId())
                         ))

@@ -15,7 +15,7 @@ public interface SavingAccountService {
 
     public Mono<SavingAccount> save(SavingAccount o);
 
-    public Mono<SavingAccount> update(UpdateSavingAccountDto o);
+    public Mono<SavingAccount> update(SavingAccount savingAccount);
 
     public Mono<SavingAccount> delete(String id);
 }

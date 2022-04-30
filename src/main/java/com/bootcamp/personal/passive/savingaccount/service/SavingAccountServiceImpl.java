@@ -1,13 +1,10 @@
 package com.bootcamp.personal.passive.savingaccount.service;
 
-import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
-import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
+import com.bootcamp.personal.passive.savingaccount.util.Constant;
 import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
-import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.NotFoundException;
 
 import com.bootcamp.personal.passive.savingaccount.repository.SavingAccountRepository;
-import com.bootcamp.personal.passive.savingaccount.util.Util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,11 +45,11 @@ public class SavingAccountServiceImpl implements SavingAccountService {
     }
 
     @Override
-    public Mono<SavingAccount> update(UpdateSavingAccountDto o) {
+    public Mono<SavingAccount> update(SavingAccount savingAccount) {
 
-        return repository.findById(o.getId())
-                .switchIfEmpty(Mono.error(new Exception("An item with the id " + o.getId() + " was not found. >> switchIfEmpty")))
-                .flatMap(p -> repository.save(Util.mapUpdate(p, o)))
+        return repository.findById(savingAccount.getId())
+                .switchIfEmpty(Mono.error(new Exception("An item with the id " + savingAccount.getId() + " was not found. >> switchIfEmpty")))
+                .flatMap(p -> repository.save(savingAccount))
                 .onErrorResume(e -> Mono.error(new BadRequestException(
                         "ID",
                         "An error occurred while trying to update an item.",
@@ -64,10 +61,12 @@ public class SavingAccountServiceImpl implements SavingAccountService {
 
     @Override
     public Mono<SavingAccount> delete(String id) {
-
         return repository.findById(id)
                 .switchIfEmpty(Mono.error(new Exception("An item with the id " + id + " was not found. >> switchIfEmpty")))
-                .flatMap(p -> repository.save(Util.mapDelete(p, id)))
+                .flatMap(p -> {
+                    p.setRegistrationStatus(Constant.STATUS_INACTIVE);
+                    return repository.save(p);
+                })
                 .onErrorResume(e -> Mono.error(new BadRequestException(
                         "ID",
                         "An error occurred while trying to delete an item.",
