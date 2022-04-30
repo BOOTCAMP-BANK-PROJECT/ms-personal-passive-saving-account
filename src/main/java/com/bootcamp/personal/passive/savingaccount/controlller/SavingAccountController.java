@@ -1,9 +1,7 @@
 package com.bootcamp.personal.passive.savingaccount.controlller;
 
-import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
-import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
-import com.bootcamp.personal.passive.savingaccount.service.SavingAccountServiceImpl;
+import com.bootcamp.personal.passive.savingaccount.service.impl.SavingAccountServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

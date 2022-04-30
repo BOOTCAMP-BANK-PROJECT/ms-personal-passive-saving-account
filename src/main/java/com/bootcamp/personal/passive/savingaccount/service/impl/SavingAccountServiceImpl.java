@@ -1,6 +1,7 @@
-package com.bootcamp.personal.passive.savingaccount.service;
+package com.bootcamp.personal.passive.savingaccount.service.impl;
 
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
+import com.bootcamp.personal.passive.savingaccount.service.SavingAccountService;
 import com.bootcamp.personal.passive.savingaccount.util.Constant;
 import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
 
