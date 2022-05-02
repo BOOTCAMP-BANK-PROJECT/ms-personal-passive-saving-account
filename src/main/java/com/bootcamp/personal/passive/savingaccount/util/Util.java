@@ -1,7 +1,6 @@
 package com.bootcamp.personal.passive.savingaccount.util;
 
-import com.bootcamp.personal.passive.savingaccount.dto.CreateSavingAccountDto;
-import com.bootcamp.personal.passive.savingaccount.dto.UpdateSavingAccountDto;
+
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
 
 import java.math.BigDecimal;
@@ -22,37 +21,6 @@ public class Util {
         return false;
     }
 
-   /* public static SavingAccount mapCreate(CreateSavingAccountDto o) {
-
-        SavingAccount p = new SavingAccount(
-                null,
-                o.getDescription(),
-                o.getAbbreviation(),
-                o.getIsoCurrencyCode(),
-                new BigDecimal(0),
-                o.getFk_insertionUser(),
-                o.getInsertionTerminal()
-        );
-
-        return p;
-    }*/
-
-    public static SavingAccount mapUpdate(SavingAccount p, UpdateSavingAccountDto o) {
-        return new SavingAccount(
-                o.getId(),
-                p.getIdClient(),
-                o.getDescription(),
-                o.getAbbreviation(),
-                p.getIsoCurrencyCode(),
-                o.getInteresRate(),
-                p.getRegistrationStatus(),
-                p.getTransactionsNumber(),
-                p.getMainteanceCost(),
-                p.getInsertionDate(),
-                p.getFk_insertionUser(),
-                p.getInsertionTerminal()
-        );
-    }
 
     public static SavingAccount mapDelete(SavingAccount p, String id) {
         return new SavingAccount(
