@@ -1,6 +1,7 @@
 package com.bootcamp.personal.passive.savingaccount.service.impl;
 
 import com.bootcamp.personal.passive.savingaccount.entity.SavingAccount;
+import com.bootcamp.personal.passive.savingaccount.models.PersonalClient;
 import com.bootcamp.personal.passive.savingaccount.service.SavingAccountService;
 import com.bootcamp.personal.passive.savingaccount.util.Constant;
 import com.bootcamp.personal.passive.savingaccount.util.handler.exceptions.BadRequestException;
@@ -10,14 +11,19 @@ import com.bootcamp.personal.passive.savingaccount.repository.SavingAccountRepos
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
 public class SavingAccountServiceImpl implements SavingAccountService {
 
     public final SavingAccountRepository repository;
+
+    public final WebClient webClient;
 
     @Override
     public Flux<SavingAccount> getAll() {
@@ -41,7 +47,12 @@ public class SavingAccountServiceImpl implements SavingAccountService {
                             "save.onErrorResume"
                     );
                 })
-                .switchIfEmpty(repository.save(savingAccount))
+                .switchIfEmpty(Mono.defer(() -> {
+                            savingAccount.setId(null);
+                            savingAccount.setInsertionDate(new Date());
+                            return repository.save(savingAccount);
+                        }
+                ))
                 .onErrorResume(e -> Mono.error(e)).cast(SavingAccount.class);
     }
 

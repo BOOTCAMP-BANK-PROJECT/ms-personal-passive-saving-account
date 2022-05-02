@@ -13,7 +13,7 @@ public interface SavingAccountService {
 
     public Mono<SavingAccount> getById(String id);
 
-    public Mono<SavingAccount> save(SavingAccount o);
+    public Mono<SavingAccount> save(SavingAccount savingAccount);
 
     public Mono<SavingAccount> update(SavingAccount savingAccount);
 

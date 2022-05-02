@@ -21,3 +21,4 @@ springdoc:
 # Tomcat Server Port
 server:
   port: 3000
+
